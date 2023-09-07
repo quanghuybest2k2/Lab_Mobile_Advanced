@@ -158,6 +158,7 @@ class ATMView {
             System.out.println("3-Withdraw");
             System.out.println("4-Transfer");
 
+            System.out.println("Enter your option from 1 to 4: ");
             int action = sc.nextInt();
             switch (action) {
                 case 1:
@@ -196,5 +197,30 @@ class ATMView {
             System.out.println();
 
         } // End while
+    }
+}
+
+/**
+ * Test login
+ */
+class Test {
+    public static void main(String[] args) {
+        ATMController atmController = new ATMController();
+        Account testAccount = atmController.newAccount(1, "abc123", 100, "Nguyen Van A");
+
+        // Success
+        if (atmController.login(testAccount)) {
+            System.out.println("Login success");
+        } else {
+            System.out.println("Login fail");
+        }
+
+        // failure
+        Account invalidAccount = new Account();
+        if (atmController.login(invalidAccount)) {
+            System.out.println("Login success");
+        } else {
+            System.out.println("Login fail");
+        }
     }
 }
