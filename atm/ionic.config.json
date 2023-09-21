@@ -1,0 +1,7 @@
+{
+  "name": "atm",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
