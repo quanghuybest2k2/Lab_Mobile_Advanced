@@ -13,12 +13,13 @@
   <form (ngSubmit)="login()">
     <ion-item>
       <ion-label position="floating">Email</ion-label>
-      <ion-input [(ngModel)]="formData.email" name="email" type="text"></ion-input>
+      <ion-input placeholder="Nhập email...." [(ngModel)]="formData.email" name="email" type="text"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Mật khẩu</ion-label>
-      <ion-input [(ngModel)]="formData.password" name="password" type="password"></ion-input>
+      <ion-input placeholder="Nhập mật khẩu..." [(ngModel)]="formData.password" name="password"
+        type="password"></ion-input>
     </ion-item>
 
     <ion-button expand="full" type="submit">Đăng nhập</ion-button>
