@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { RechargeService } from '../service/recharge.service';
 import { Router } from '@angular/router';
+import { RechargeService } from '../services/recharge.service';
 
 @Component({
   selector: 'app-recharge',
@@ -16,11 +16,11 @@ export class RechargePage implements OnInit {
   ngOnInit() {}
   
   submitRecharge() {
-    const maxValue: number = 10000000;
+    const maxValue: number = 1_000_000_000;
     if (this.formData.recharge >= maxValue) {
-      alert('Số tiền không vượt quá: ' + maxValue);
+      alert("Số tiền không vượt quá: "+ maxValue.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }));
     } else {
-    this.rechargeService.setRecharge(this.formData.recharge);
+    this.rechargeService.saveRechargeUser(this.formData.recharge);
     this.router.navigateByUrl('/account-info');
     }
   }

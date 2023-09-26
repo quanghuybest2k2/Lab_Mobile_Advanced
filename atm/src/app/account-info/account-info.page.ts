@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../service/user.service';
-import { RechargeService } from '../service/recharge.service';
+import { AccountService } from '../services/account.service';
+import { RechargeService } from '../services/recharge.service';
 
 @Component({
   selector: 'app-account-info',
@@ -12,12 +12,15 @@ export class AccountInfoPage implements OnInit {
   recharge: number = 0;
 
   constructor(
-    private userService: UserService,
-    private rechargeService: RechargeService
+    private accountService: AccountService, private rechargeService: RechargeService 
   ) {}
   ionViewWillEnter() {
-    this.loggedInUserEmail = this.userService.getLoggedInUserEmail();
-    this.recharge = this.rechargeService.getRecharge();
+    const loggedInUser = this.accountService.getLoggedInUser();
+
+    if (loggedInUser) {
+      this.loggedInUserEmail = loggedInUser;
+    }
+    this.recharge = this.rechargeService.getRechargeUser();
   }
   ngOnInit() {}
 }

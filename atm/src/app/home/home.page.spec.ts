@@ -1,24 +1,30 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { StorageService } from '../services/storage.service'; // Import StorageService
 
-import { HomePage } from './home.page';
+@Component({
+  selector: 'app-home',
+  templateUrl: 'home.page.html',
+  styleUrls: ['home.page.scss'],
+})
+export class HomePage {
+  loggedInUserEmail: string = '';
 
-describe('HomePage', () => {
-  let component: HomePage;
-  let fixture: ComponentFixture<HomePage>;
+  constructor(private route: Router, private storageService: StorageService) {}
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [HomePage],
-      imports: [IonicModule.forRoot()]
-    }).compileComponents();
+  ionViewWillEnter() {
+    const credentials = this.storageService.get();
 
-    fixture = TestBed.createComponent(HomePage);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    if (credentials) {
+      this.loggedInUserEmail = credentials.email;
+    }
+  }
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+  nextpage() {
+    this.route.navigate(['/account-info']);
+  }
+
+  rechargePage() {
+    this.route.navigate(['/recharge']);
+  }
+}

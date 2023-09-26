@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './service/auth.guard';
+// import { AuthGuard } from './service/auth.guard';
 
 const routes: Routes = [
   {
     path: 'home',
     loadChildren: () =>
     import('./home/home.module').then((m) => m.HomePageModule),
-    canActivate: [AuthGuard], 
+    // canActivate: [AuthGuard], 
   },
   {
     path: '',
@@ -21,12 +21,12 @@ const routes: Routes = [
   {
     path: 'account-info',
     loadChildren: () => import('./account-info/account-info.module').then( m => m.AccountInfoPageModule),
-    canActivate: [AuthGuard], 
+    // canActivate: [AuthGuard], 
   },
   {
     path: 'recharge',
     loadChildren: () => import('./recharge/recharge.module').then( m => m.RechargePageModule),
-    canActivate: [AuthGuard], 
+    // canActivate: [AuthGuard], 
   },
 ];
 

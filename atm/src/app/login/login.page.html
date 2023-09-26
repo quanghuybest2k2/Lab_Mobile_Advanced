@@ -41,4 +41,27 @@
       <ion-label>123456</ion-label>
     </ion-item>
   </ion-list>
+  <ion-list>
+    <ion-button
+      expand="full"
+      color="warning"
+      (click)="addUser()"
+      class="ion-margin-top"
+      >Thêm</ion-button
+    >
+    <ion-button
+      expand="full"
+      color="danger"
+      (click)="deleteUser()"
+      class="ion-margin-top ion-margin-bottom"
+      >Xóa</ion-button
+    >
+    <ion-button
+      expand="full"
+      color="success"
+      (click)="viewAll()"
+      class="ion-margin-bottom"
+      >Xem tất cả</ion-button
+    >
+  </ion-list>
 </ion-content>

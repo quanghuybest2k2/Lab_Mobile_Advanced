@@ -2,6 +2,10 @@
 
 ## Các bài lab cá nhân môn di động nâng cao
 
+## Tạo dự án ionic angular
+
+### `ionic start "atm" blank --type=angular`
+
 ## Thêm ứng dụng android
 
 ### `ionic cap add android`
