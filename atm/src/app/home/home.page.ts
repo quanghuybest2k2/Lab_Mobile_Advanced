@@ -11,7 +11,11 @@ import { RechargeService } from '../services/recharge.service';
 export class HomePage implements OnInit {
   loggedInUserEmail: string = '';
 
-  constructor(private route: Router, private accountService: AccountService, private rechargeService:RechargeService) {}
+  constructor(
+    private route: Router,
+    private accountService: AccountService,
+    private rechargeService: RechargeService
+  ) {}
 
   ionViewWillEnter() {
     // Lấy email từ local storage

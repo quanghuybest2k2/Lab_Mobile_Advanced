@@ -10,6 +10,13 @@ export class AccountService {
 
   constructor(private storageService: StorageService) {}
 
+  // check login chưa
+  isLoggedIn(): boolean {
+     // get info user
+    const loggedInUser = this.storageService.get(this.LOGGED_IN_USER_KEY);
+    // Kiểm tra xem có đăng nhập chưa
+    return loggedInUser !== null;
+  }
   // Lưu email và mật khẩu vào local storage
   saveAccounts(accounts: { email: string; password: string }[]): void {
     this.storageService.set(this.STORAGE_KEY, accounts);
