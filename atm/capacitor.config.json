@@ -1,0 +1,6 @@
+{
+  "appId": "io.ionic.starter",
+  "appName": "atm",  
+  "webDir": "www",
+  "bundledWebRuntime": false
+}

@@ -27,3 +27,18 @@
 Build -> Build bundle (APK) -> Build APK
 
 File apk ở tại => D:\Lab_Mobile_Advanced\atm\android\app\build\outputs\apk\debug\app-debug.apk
+===================================
+Cài đặt camera
+Change file /atm/capacitor.config.json
+{
+  "appId": "io.ionic.starter",
+  -> "appName": "atm",  
+  "webDir": "www",
+  "bundledWebRuntime": false
+}
+## `npm install @capacitor/camera`
+## `npx cap sync`
+## `npm install @ionic/pwa-elements`
+atm/src/main.ts
+	import { defineCustomElements } from '@ionic/pwa-elements/loader';
+	defineCustomElements(window);

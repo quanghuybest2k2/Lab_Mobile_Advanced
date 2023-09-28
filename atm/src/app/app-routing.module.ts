@@ -28,6 +28,15 @@ const routes: Routes = [
     loadChildren: () => import('./recharge/recharge.module').then( m => m.RechargePageModule),
     canActivate: [AuthGuard], 
   },
+  {
+    path: 'camera',
+    loadChildren: () => import('./camera/camera.module').then( m => m.CameraPageModule)
+  },  {
+    path: 'map',
+    loadChildren: () => import('./map/map.module').then( m => m.MapPageModule)
+  },
+
+
 ];
 
 @NgModule({

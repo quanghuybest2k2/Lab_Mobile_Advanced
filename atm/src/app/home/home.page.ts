@@ -25,7 +25,13 @@ export class HomePage implements OnInit {
       this.loggedInUserEmail = loggedInUser;
     }
   }
-
+  // go to next page
+  goCameraPage() {
+    this.route.navigate(['/camera']);
+  }
+  goMap(){
+    this.route.navigate(['/map']);
+  }
   nextpage() {
     this.route.navigate(['/account-info']);
   }
