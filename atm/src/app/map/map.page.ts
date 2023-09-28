@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Geolocation } from '@capacitor/geolocation';
-import * as L from 'leaflet';
+
+declare var google: any;
 
 @Component({
   selector: 'app-map',
@@ -8,41 +9,33 @@ import * as L from 'leaflet';
   styleUrls: ['./map.page.scss'],
 })
 export class MapPage implements OnInit {
-  @ViewChild('map') mapContainer!: ElementRef;
   map: any;
-  latitude: number = 0;
-  longitude: number = 0;
 
-  constructor() {
-    this.mapContainer = {} as ElementRef;
-  }
+  constructor() {}
 
   ngOnInit() {
-    this.getCurrentLocation();
-  }
-
-  async getCurrentLocation() {
-    const coordinates = await Geolocation.getCurrentPosition();
-    this.latitude = coordinates.coords.latitude;
-    this.longitude = coordinates.coords.longitude;
-
     this.loadMap();
   }
 
-  loadMap() {
-    this.map = L.map(this.mapContainer.nativeElement).setView(
-      [this.latitude, this.longitude],
-      13
+  async loadMap() {
+    const coordinates = await Geolocation.getCurrentPosition();
+    const latLng = new google.maps.LatLng(
+      coordinates.coords.latitude,
+      coordinates.coords.longitude
     );
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution:
-        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    }).addTo(this.map);
+    const mapOptions = {
+      center: latLng,
+      zoom: 15,
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+    };
 
-    L.marker([this.latitude, this.longitude])
-      .addTo(this.map)
-      .bindPopup('Vị trí của bạn')
-      .openPopup();
+    this.map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+    const marker = new google.maps.Marker({
+      position: latLng,
+      map: this.map,
+      title: 'Vị trí hiện tại',
+    });
   }
 }
