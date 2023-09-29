@@ -9,13 +9,17 @@ import { AccountService } from '../services/account.service';
 })
 export class LoginPage implements OnInit {
   formData: { email: string; password: string } = {
-    email: '',
-    password: '',
+    email: 'quanghuybest@gmail.com',
+    password: '123456',
   };
 
   constructor(private router: Router, private accountService: AccountService) {}
 
   ngOnInit() {}
+  // Điều hướng
+  goHomePgae() {
+    this.router.navigateByUrl('/home');
+  }
 
   validator(): boolean {
     if (!this.formData.email || !this.formData.password) {
@@ -83,7 +87,8 @@ export class LoginPage implements OnInit {
 
         // Lưu danh sách tài khoản mới vào local storage
         this.accountService.saveAccounts(existingAccounts);
-
+        // Xóa tài khoản đăng đăng nhập luôn
+        this.accountService.clearDataUser();
         this.router.navigateByUrl('/login');
       } else {
         alert('Không tìm thấy tài khoản này!');
