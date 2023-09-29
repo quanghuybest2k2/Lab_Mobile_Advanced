@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AccountService } from '../services/account.service';
+import { RechargeService } from '../services/recharge.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,11 @@ export class LoginPage implements OnInit {
     password: '123456',
   };
 
-  constructor(private router: Router, private accountService: AccountService) {}
+  constructor(
+    private router: Router,
+    private accountService: AccountService,
+    private rechargeService: RechargeService
+  ) {}
 
   ngOnInit() {}
   // Điều hướng
@@ -87,8 +92,9 @@ export class LoginPage implements OnInit {
 
         // Lưu danh sách tài khoản mới vào local storage
         this.accountService.saveAccounts(existingAccounts);
-        // Xóa tài khoản đăng đăng nhập luôn
+        // Xóa các thứ cần thiết :))
         this.accountService.clearDataUser();
+        this.rechargeService.clearDataAmount();
         this.router.navigateByUrl('/login');
       } else {
         alert('Không tìm thấy tài khoản này!');
